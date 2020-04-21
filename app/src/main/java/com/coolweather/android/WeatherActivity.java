@@ -48,6 +48,16 @@ public class WeatherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(Build.VERSION.SDK_INT >= 21){
+            View decorView = getWindow().getDecorView();    // 获取DecorView
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            |View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            );  // 改变系统UI
+            getWindow().setStatusBarColor(Color.TRANSPARENT);   // 设置透明
+        }
+
         setContentView(R.layout.activity_weather);
 
         //初始化各组件
@@ -68,16 +78,6 @@ public class WeatherActivity extends AppCompatActivity {
         String weatherString = prefs.getString("weather",null);
         String bingPic = prefs.getString("bing_pic",null);  // 尝试从缓存中读取
 
-        if(Build.VERSION.SDK_INT >= 21){
-            View decorView = getWindow().getDecorView();    // 获取DecorView
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            |View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-            );  // 改变系统UI
-            getWindow().setStatusBarColor(Color.TRANSPARENT);   // 设置透明
-        }
-
-        setContentView(R.layout.activity_weather);
 
 
 
